@@ -1,5 +1,3 @@
-// Counter.js dans le dossier components
-
 function Counter() {
     const [count, setCount] = useState(0); // Utilisation de useState provenant de app.js
 
