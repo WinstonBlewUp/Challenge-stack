@@ -1,10 +1,14 @@
 export class RootComponent {
-    constructor(props) {
+    constructor(props = {}) {
         this.props = props;
         this.oldProps = {};
+        if (!this.props.id) {
+            throw new Error("Component must have an id");
+        }
+        console.log(`RootComponent initialized with props:`, this.props);
     }
 
-    display(newProps) {
+    display(newProps = this.props) {
         if (this.shouldUpdate(newProps, this.oldProps)) {
             this.oldProps = this.props;
             this.props = newProps;
@@ -22,8 +26,18 @@ export class RootComponent {
     }
 
     updateDOM(rendered) {
-        const root = document.getElementById('root');
-        root.innerHTML = '';
-        root.appendChild(rendered);
+        if (!this.props.id) {
+            throw new Error("Component must have an id");
+        }
+        const componentContainer = document.getElementById(this.props.id);
+        if (componentContainer) {
+            componentContainer.innerHTML = '';
+            componentContainer.appendChild(rendered);
+        } else {
+            console.error("No container found for component ID:", this.props.id);
+        }
     }
 }
+
+
+

@@ -1,7 +1,7 @@
 import { createElement } from '../utils/DomUtils.js';
 import { RootComponent } from '../RootComponent.js';
 
-export class Counter extends RootComponent {
+export class Counter2 extends RootComponent {
     constructor(props) {
         super(props);
         this.state = { count: this.props.initialCount || 0 };
