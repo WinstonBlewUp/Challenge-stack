@@ -5,6 +5,7 @@ import {Favorite} from './pages/Favorite.js';
 import {Ticket} from './pages/Ticket.js';
 import {NotFound} from './pages/NotFound.js';
 
+
 const routes = {
     '/': new Home(),
     '/event': new Event(),
