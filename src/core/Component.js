@@ -9,11 +9,7 @@ export class Component {
             this.oldProps = this.props;
             this.props = newProps;
             const rendered = this.render();
-            if (rendered instanceof Component) {
-                rendered.display(rendered.props);
-                return rendered;
-            }
-            return rendered;
+            this.updateDOM(rendered);
         }
         return null;
     }
@@ -24,5 +20,18 @@ export class Component {
 
     render() {
         throw new Error('Component should implement render method');
+    }
+
+    updateDOM(rendered) {
+        if (!this.props.id) {
+            throw new Error("Component must have an id");
+        }
+        const componentContainer = document.getElementById(this.props.id);
+        if (componentContainer) {
+            componentContainer.innerHTML = '';
+            componentContainer.appendChild(rendered);
+        } else {
+            console.error("No container found for component ID:", this.props.id);
+        }
     }
 }

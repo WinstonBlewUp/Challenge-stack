@@ -1,13 +1,17 @@
 import {Component} from '../core/Component.js';
+import {createElement} from "../core/DomUtils.js";
 
 export class Event extends Component {
     render() {
-        const element = document.createElement('div');
-        element.innerHTML = `
-      <h1>Event Page</h1>
-      <p>Details about the event.</p>
-      <a href="/">Go to Home</a> | <a href="/about">Go to About</a>
-    `;
-        return element;
+        return createElement('div', {id: 'event-page'},
+            createElement('h1', {}, 'Event'),
+            createElement('a', {href: '/', className: 'nav-link'}, 'Go to Home'),
+            createElement('br'),
+            createElement('a', {href: '/event', className: 'nav-link'}, 'Go to Events'),
+            createElement('br'),
+            createElement('a', {href: '/favorite', className: 'nav-link'}, 'Go to Favorites'),
+            createElement('br'),
+            createElement('a', {href: '/ticket', className: 'nav-link'}, 'Go to Tickets'),
+        );
     }
 }

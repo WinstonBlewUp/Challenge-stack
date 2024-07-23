@@ -1,16 +1,8 @@
 import {Component} from '../core/Component.js';
+import {createElement} from "../core/DomUtils";
 
 export class Header extends Component {
     render() {
-        const element = document.createElement('header');
-        element.innerHTML = `
-      <h1>Mini React App</h1>
-      <nav>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/event">Event</a>
-      </nav>
-    `;
-        return element;
+        return createElement('header', {class: 'header'}, 'nav');
     }
 }
