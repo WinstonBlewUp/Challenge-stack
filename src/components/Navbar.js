@@ -1,5 +1,6 @@
 import { Component } from '../core/Component.js';
 import { createElement } from '../core/DomUtils.js';
+import { router } from '../app.js';
 
 export class Navbar extends Component {
     constructor(props) {
@@ -29,10 +30,23 @@ export class Navbar extends Component {
         const isActive = currentPath === href;
         const linkClassName = isActive ? 'flex flex-col items-center text-black nav-link' : 'flex flex-col items-center text-gray-600 nav-link';
         const iconClassName = isActive ? 'h-8 mb-1 text-black' : 'h-8 mb-1';
-        return createElement('a', { href: `${href}`, className: linkClassName },
+        return createElement('a', {
+                href: `${href}`,
+                className: linkClassName,
+                onclick: (event) => this.handleNavClick(event, href)
+            },
             createElement('div', { className: iconClassName, innerHTML: iconSvg }),
             createElement('span', { className: 'text-sm' }, label)
         );
+    }
+
+    handleNavClick(event, href) {
+        event.preventDefault();
+        if (router && typeof router.navigate === 'function') {
+            router.navigate(href);
+        } else {
+            console.error("Router not found or navigate method is missing.");
+        }
     }
 
     createModal() {
@@ -54,8 +68,7 @@ export class Navbar extends Component {
         if (this.isModalOpen) {
             navbar.classList.add('no-shadow');
             navbarBar.classList.add('hidden');
-        }
-        else {
+        } else {
             navbar.classList.remove('no-shadow');
             navbarBar.classList.remove('hidden');
         }
@@ -69,10 +82,6 @@ export class Navbar extends Component {
         }
     }
 }
-
-
-
-
 
 const homeIcon = `
 <svg width="25" height="32" viewBox="0 0 25 32" fill="none" xmlns="http://www.w3.org/2000/svg">
