@@ -9,6 +9,7 @@ export class Router {
     navigate(path) {
         history.pushState(null, null, path);
         this.renderRoute();
+        this.displayRoute();
     }
 
     renderRoute() {
@@ -18,13 +19,18 @@ export class Router {
         root.innerHTML = '';
         let element;
         if (route instanceof Component) {
-            route.display(route.props);
             element = route.render();
         } else {
             element = route();
         }
         root.appendChild(element);
         this.initLinks();
+    }
+
+    displayRoute() {
+        const path = window.location.pathname;
+        const route = this.routes[path] || this.routes['/404'];
+        route.display(route.props);
     }
 
     initLinks() {
