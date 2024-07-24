@@ -1,21 +1,14 @@
 import {Component} from '../core/Component.js';
 import {createElement} from "../core/DomUtils.js";
-
-import {Counter} from "../components/Counter.js";
-import {Counter2} from "../components/Counter2.js";
-import { Navbar } from '../components/Navbar.js';
-
+import {Navbar} from '../components/Navbar.js';
 import {Map} from "../components/Map.js";
 
 
 export class Home extends Component {
     constructor(props) {
         super(props);
-
-        this.Navbar = new Navbar({id:'navbar'});
-
+        this.Navbar = new Navbar({id: 'navbar'});
         this.map = new Map({id: 'map'});
-
     }
 
     render() {
@@ -28,14 +21,12 @@ export class Home extends Component {
             createElement('a', {href: '/favorite', className: 'nav-link'}, 'Go to Favorites'),
             createElement('br'),
             createElement('a', {href: '/ticket', className: 'nav-link'}, 'Go to Tickets'),
-
-            this.Navbar.render()
-            this.map.render()
+            this.Navbar.render(),
+            this.map.render(),
         );
     }
 
-    display(){
+    display() {
         this.map.display();
     }
-
 }

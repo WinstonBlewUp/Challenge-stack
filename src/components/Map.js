@@ -1,22 +1,20 @@
 import {Component} from '../core/Component.js';
 import {createElement} from '../core/DomUtils.js';
 import * as L from "https://cdn.jsdelivr.net/npm/leaflet@1.8.0/dist/leaflet-src.esm.js";
-import {fetchSites} from '../../js/Api.js';
 
 let siteData;
 
-var Icon = L.Icon.extend({
+const Icon = L.Icon.extend({
     options: {
-        iconSize:     [70, 70],
-        shadowSize:   [50, 64],
-        iconAnchor:   [22, 94],
+        iconSize: [70, 70],
+        shadowSize: [50, 64],
+        iconAnchor: [22, 94],
         shadowAnchor: [4, 62],
-        popupAnchor:  [-3, -76]
+        popupAnchor: [-3, -76]
     }
 });
 
-var phrygeIcon = new Icon({iconUrl: '../../assets/phryge.svg'});
-
+const phrygeIcon = new Icon({iconUrl: '../../assets/phryge.svg'});
 
 export class Map extends Component {
     constructor(props) {
@@ -29,17 +27,14 @@ export class Map extends Component {
         if (mapElement) {
             this.map = L.map(mapElement).setView([48.866669, 2.33333], 13);
 
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(this.map);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(this.map);
         } else {
             console.error(`Element with ID ${this.props.id} not found`);
         }
     }
 
     render() {
-        // Crée un div avec une hauteur définie pour la carte
-        return createElement('div', {id: this.props.id, style: 'height: 800px; width: 100%; border: 1px solid red; overflow: hidden;'});
+        return createElement('div', {id: this.props.id, style: 'height: 100vh; width: 100%'});
     }
 
     display() {
