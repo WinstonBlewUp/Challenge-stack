@@ -16,3 +16,4 @@ const routes = {
 
 const router = new Router(routes);
 router.renderRoute();
+router.displayRoute();
