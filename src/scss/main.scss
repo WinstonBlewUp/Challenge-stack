@@ -1,6 +1,6 @@
-
-@import 'variables'; 
-@import '../components/button'; 
+@import'../scss/partials/functions';
+@import '../scss/components/button'; 
+@import'../scss/partials/variables';
 
 body {
   font-family: Arial, sans-serif;

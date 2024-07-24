@@ -1,0 +1,20 @@
+@import '../partials/variables';
+
+.button-link{
+
+  padding:  rem(15) rem(20);
+  text-decoration: none;
+  font-size: rem(16);
+  font-weight: 700;
+  border-radius: rem(20);
+  text-align: center;
+  
+  &.blue{
+    background-color: var(--blue-color);
+    color: white;
+  }
+  &.white{
+    background-color: var(--grey-color);
+    color: black;
+  }
+}

@@ -9,7 +9,7 @@ export class Home extends Component {
         super(props);
         this.counter = new Counter({id: 'counter1', initialCount: 1});
         this.counter2 = new Counter2({id: 'counter2', initialCount: 2});
-        this.Button = new Button({id: Button, href:'#', text:'button', className:'blue'});
+        this.Button = new Button({id: Button, href:'#', text:'Get Directions', className:'white'});
     }
 
     render() {
