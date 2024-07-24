@@ -1,0 +1,16 @@
+
+$blue-color: #007bff;
+$blue-dark: #0056b3;
+$grey-button: #E8EDF5;
+$border-color: #007bff;
+$hover-light: #f1f1f1;
+
+$padding: 10px 20px;
+$border-radius: 5px;
+$transition-time: 0.3s;
+
+:root{
+    --blue-color : #{$blue-color};
+    --grey-color : #{$grey-button};
+
+}

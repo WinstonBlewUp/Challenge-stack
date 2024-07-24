@@ -1,1 +1,10 @@
+@import'../scss/partials/functions';
+@import '../scss/components/button'; 
+@import'../scss/partials/variables';
+
+body {
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
 @import "components/navbar";
