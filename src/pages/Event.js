@@ -1,29 +1,19 @@
 import {Component} from '../core/Component.js';
 import {createElement} from "../core/DomUtils.js";
-<<<<<<< HEAD
-import {Navbar} from '../components/Navbar.js';
-=======
 import { Navbar } from '../components/Navbar.js';
 import {Topbar} from '../components/Topbar.js';
->>>>>>> eb77398 (ajout de la Topbar)
 
-export class Ticket extends Component {
+
+export class Event extends Component {
     constructor(props) {
         super(props);
-<<<<<<< HEAD
-        this.Navbar = new Navbar({id: 'navbar'});
-=======
         this.Navbar = new Navbar({id:'navbar'});
         this.Topbar = new Topbar({id:'Topbar'});
->>>>>>> eb77398 (ajout de la Topbar)
-    }
 
+    }
     render() {
-        return createElement('div', {id: 'ticket-page'},
-<<<<<<< HEAD
-            this.Navbar.render()
-=======
-            createElement('h1', {}, 'Tickets'),
+        return createElement('div', {id: 'event-page'},
+            createElement('h1', {}, 'Event'),
             createElement('a', {href: '/', className: 'nav-link'}, 'Go to Home'),
             createElement('br'),
             createElement('a', {href: '/events', className: 'nav-link'}, 'Go to Events'),
@@ -33,7 +23,7 @@ export class Ticket extends Component {
             createElement('a', {href: '/ticket', className: 'nav-link'}, 'Go to Tickets'),
             this.Navbar.render(),
             this.Topbar.render()
->>>>>>> eb77398 (ajout de la Topbar)
+
         );
     }
 }
