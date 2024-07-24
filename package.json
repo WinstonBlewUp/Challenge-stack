@@ -1,6 +1,8 @@
 {
   "scripts": {
-    "start": "lite-server"
+    "start": "lite-server",
+    "sass": "sass src/css/main.scss dist/css/main.css",
+    "watch": "sass --watch src/css/main.scss dist/css/main.css"
   },
   "devDependencies": {
     "lite-server": "^2.5.4"
