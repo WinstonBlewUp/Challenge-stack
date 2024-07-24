@@ -9,6 +9,7 @@ export function createElement(type, props, ...children) {
             element[key] = props[key];
         }
     });
+
     children.forEach(child => {
         if (typeof child === "string") {
             element.appendChild(document.createTextNode(child));
