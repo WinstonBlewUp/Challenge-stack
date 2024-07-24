@@ -1,16 +1,18 @@
 import {Component} from '../core/Component.js';
 import {createElement} from "../core/DomUtils.js";
 import {EventCard} from "../components/EventCard.js";
+import {Navbar} from "../components/Navbar.js";
 
 export class Events extends Component {
     constructor(props) {
         super(props);
-        this.eventCard = new EventCard({id: 'event-container'});
+        this.Navbar = new Navbar({id: 'navbar'});
     }
 
     render() {
         return createElement('div', {id: 'event-page'},
-            this.eventCard.render(),
+            createElement('div', {id: 'event-container', className: 'flex flex-col gap-10 p-5'}),
+            this.Navbar.render(),
         );
     }
 }
@@ -24,6 +26,7 @@ async function fetchEventData() {
         console.error('Error fetching event data:', error);
         return [];
     }
+
 }
 
 async function renderEventCards() {
@@ -34,7 +37,6 @@ async function renderEventCards() {
     }
 
     const eventData = await fetchEventData();
-    console.log('Event data:', eventData);
 
     if (!Array.isArray(eventData)) {
         console.error('Event data is not an array:', eventData);
@@ -44,10 +46,11 @@ async function renderEventCards() {
     eventData.forEach(event => {
         const eventProps = {
             id: event.id,
-            image: 'https://img.freepik.com/photos-gratuite/outils-sport_53876-138077.jpg?w=996&t=st=1721833226~exp=1721833826~hmac=8e217a87988aa1307100217ca50bfa19b88eb8c45d8ac2f2ea543912359417e5',
+            discipline: event.discipline_principale_du_projet_c[0],
             name: event.name,
-            onClick: () => console.log(`Event ${event.id} clicked`),
-            onButtonClick: () => console.log(`Button for event ${event.id} clicked`)
+            location: event.lieu_de_presentation_c,
+            description: event.presentation_synthetique_du_projet_c,
+            image: 'https://picsum.photos/500/300',
         };
 
         const eventCard = new EventCard(eventProps);
@@ -55,5 +58,7 @@ async function renderEventCards() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', renderEventCards);
+if (window.location.pathname === '/events') {
+    document.addEventListener('DOMContentLoaded', renderEventCards);
+}
 
