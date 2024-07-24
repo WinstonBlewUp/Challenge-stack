@@ -4,28 +4,30 @@ import {Component} from '../core/Component.js';
 import {Navbar} from '../components/Navbar.js';
 import {Topbar} from "../components/Topbar.js";
 import {FavCard} from "../components/FavCard.js";
-import { Slider } from '../components/Slider.js';
+import { Slider} from "../components/Slider.js";
+
+const sliderItems = [
+    { color: '#ff6666', imageSrc: 'public/assets/images/bar.png' },
+    { color: '#66ff66', imageSrc: 'public/assets/images/room.png' },
+    { color: '#6666ff', imageSrc: 'public/assets/images/fancy.png' },
+];
 
 export class Favorite extends Component {
     constructor(props) {
         super(props);
         this.Topbar = new Topbar({title: 'Favoris'});
         this.Navbar = new Navbar({id: 'navbar'});
-        this.Slider = new Slider({ items: [
-            { color: '#ff9999' },
-            { color: '#99ff99' },
-            { color: '#9999ff' },
-            { color: '#ffcc99' }
-        ]});
+        this.Slider = new Slider({id:slider, items :sliderItems});
     }
+
+
 
     render() {
         return createElement('div', {id: 'favorite-page', className: 'flex flex-col gap-10 mt-20 mb-16'},
             createElement('div', {id: 'fav-container', className: 'flex flex-col gap-10 p-5'}),
             this.Topbar.render(),
             this.Slider.render(),
-            this.Navbar.render()
-            
+            this.Navbar.render(),
         );
     }
 }
