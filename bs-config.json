@@ -1,9 +1,0 @@
-{
-  "server": {
-    "baseDir": "./",
-    "routes": {
-      "/about": "/index.html",
-      "/event": "/index.html"
-    }
-  }
-}

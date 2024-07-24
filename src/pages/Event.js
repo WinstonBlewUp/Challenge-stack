@@ -12,7 +12,7 @@ export class Event extends Component {
             createElement('h1', {}, 'Event'),
             createElement('a', {href: '/', className: 'nav-link'}, 'Go to Home'),
             createElement('br'),
-            createElement('a', {href: '/event', className: 'nav-link'}, 'Go to Events'),
+            createElement('a', {href: '/events', className: 'nav-link'}, 'Go to Events'),
             createElement('br'),
             createElement('a', {href: '/favorite', className: 'nav-link'}, 'Go to Favorites'),
             createElement('br'),
