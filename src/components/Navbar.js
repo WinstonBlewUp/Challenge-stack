@@ -1,5 +1,6 @@
 import { Component } from '../core/Component.js';
 import { createElement } from '../core/DomUtils.js';
+import { router } from '../app.js';
 
 export class Navbar extends Component {
     constructor(props) {
@@ -9,16 +10,16 @@ export class Navbar extends Component {
     render() {
         const currentPath = window.location.pathname;
 
-        return createElement('div', { id: 'navbar-container' },
-            createElement('div', { id: 'navbar', className: 'w-full fixed bottom-0 bg-white rounded-t-xl md:hidden' },
-                createElement('div', { className: 'navbar-bar' }),
-                createElement('div', { className: 'flex justify-around items-center h-24' },
-                    this.createNavItem('Home', homeIcon, '/', currentPath),
-                    this.createNavItem('Events', eventsIcon, '/event', currentPath),
-                    this.createNavItem('Favorites', favoriteIcon, '/favorite', currentPath),
-                    this.createNavItem('My Tickets', ticketIcon, '/ticket', currentPath)
+        return createElement('div', {id: 'navbar-container'},
+            createElement('div', {id: 'navbar', className: `w-full fixed bottom-0 bg-white rounded-t-xl md:hidden`},
+                //createElement('div', {className: `navbar-bar ${this.isModalOpen ? 'hidden' : ''}`, onclick: this.toggleModal}),
+                createElement('div', {className: 'flex justify-around items-center h-24'},
+                    this.createNavItem('Accueil', homeIcon, '/', currentPath),
+                    this.createNavItem('Événements', eventsIcon, '/events', currentPath),
+                    this.createNavItem('Favoris', favoriteIcon, '/favorite', currentPath),
+                    this.createNavItem('Billetterie', ticketIcon, '/ticket', currentPath)
                 )
-            )
+            ),
         );
     }
 
@@ -26,11 +27,25 @@ export class Navbar extends Component {
         const isActive = currentPath === href;
         const linkClassName = isActive ? 'flex flex-col items-center text-black nav-link' : 'flex flex-col items-center text-gray-600 nav-link';
         const iconClassName = isActive ? 'h-8 mb-1 text-black' : 'h-8 mb-1';
-        return createElement('a', { href: `${href}`, className: linkClassName },
+        return createElement('a', {
+                href: `${href}`,
+                className: linkClassName,
+                onclick: (event) => this.handleNavClick(event, href)
+            },
             createElement('div', { className: iconClassName, innerHTML: iconSvg }),
             createElement('span', { className: 'text-sm' }, label)
         );
     }
+
+    handleNavClick(event, href) {
+        event.preventDefault();
+        if (router && typeof router.navigate === 'function') {
+            router.navigate(href);
+        } else {
+            console.error("Router not found or navigate method is missing.");
+        }
+    }
+
 }
 
 const homeIcon = `
