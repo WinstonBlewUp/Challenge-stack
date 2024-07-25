@@ -1,6 +1,34 @@
 #navbar {
   z-index: 1000;
-  box-shadow: var(--main-shadow);
+  box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.1);
+}
+
+.modal {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 75%;
+  transform: translateY(100%);
+  transition: transform 0.3s ease-in-out;
+  display: none;
+  z-index: 10;
+
+  &-content {
+    background-color: white;
+    height: 100%;
+    overflow-y: auto;
+    padding: 1rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  &.open {
+    display: block;
+    transform: translateY(0);
+    transition: transform 0.3s ease-in-out;
+  }
 }
 
 .navbar-bar {

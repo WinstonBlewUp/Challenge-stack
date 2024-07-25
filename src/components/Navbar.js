@@ -1,24 +1,28 @@
 import { Component } from '../core/Component.js';
 import { createElement } from '../core/DomUtils.js';
+import { router } from '../app.js';
 
 export class Navbar extends Component {
     constructor(props) {
         super(props);
+        this.isModalOpen = false;
+        this.toggleModal = this.toggleModal.bind(this);
     }
 
     render() {
         const currentPath = window.location.pathname;
 
-        return createElement('div', { id: 'navbar-container' },
-            createElement('div', { id: 'navbar', className: 'w-full fixed bottom-0 bg-white rounded-t-xl md:hidden' },
-                createElement('div', { className: 'navbar-bar' }),
-                createElement('div', { className: 'flex justify-around items-center h-24' },
-                    this.createNavItem('Home', homeIcon, '/', currentPath),
-                    this.createNavItem('Events', eventsIcon, '/event', currentPath),
-                    this.createNavItem('Favorites', favoriteIcon, '/favorite', currentPath),
-                    this.createNavItem('My Tickets', ticketIcon, '/ticket', currentPath)
+        return createElement('div', {id: 'navbar-container'},
+            createElement('div', {id: 'navbar', className: `w-full fixed bottom-0 bg-white rounded-t-xl md:hidden ${this.isModalOpen ? 'no-shadow' : ''}`},
+                createElement('div', {className: `navbar-bar ${this.isModalOpen ? 'hidden' : ''}`, onclick: this.toggleModal}),
+                createElement('div', {className: 'flex justify-around items-center h-24'},
+                    this.createNavItem('Accueil', homeIcon, '/', currentPath),
+                    this.createNavItem('Événements', eventsIcon, '/events', currentPath),
+                    this.createNavItem('Favoris', favoriteIcon, '/favorite', currentPath),
+                    this.createNavItem('Billetterie', ticketIcon, '/ticket', currentPath)
                 )
-            )
+            ),
+            this.createModal()
         );
     }
 
@@ -26,10 +30,56 @@ export class Navbar extends Component {
         const isActive = currentPath === href;
         const linkClassName = isActive ? 'flex flex-col items-center text-black nav-link' : 'flex flex-col items-center text-gray-600 nav-link';
         const iconClassName = isActive ? 'h-8 mb-1 text-black' : 'h-8 mb-1';
-        return createElement('a', { href: `${href}`, className: linkClassName },
+        return createElement('a', {
+                href: `${href}`,
+                className: linkClassName,
+                onclick: (event) => this.handleNavClick(event, href)
+            },
             createElement('div', { className: iconClassName, innerHTML: iconSvg }),
             createElement('span', { className: 'text-sm' }, label)
         );
+    }
+
+    handleNavClick(event, href) {
+        event.preventDefault();
+        if (router && typeof router.navigate === 'function') {
+            router.navigate(href);
+        } else {
+            console.error("Router not found or navigate method is missing.");
+        }
+    }
+
+    createModal() {
+        const modalClass = this.isModalOpen ? 'modal open' : 'modal';
+        return createElement('div', {className: modalClass},
+            createElement('div', {className: 'modal-content'},
+                createElement('div', {className: 'navbar-bar', onclick: this.toggleModal}),
+                createElement('p', {}, 'Additional content goes here')
+            )
+        );
+    }
+
+    toggleModal() {
+        this.isModalOpen = !this.isModalOpen;
+
+        const navbar = document.getElementById('navbar');
+        const navbarBar = navbar.querySelector('.navbar-bar');
+
+        if (this.isModalOpen) {
+            navbar.classList.add('no-shadow');
+            navbarBar.classList.add('hidden');
+        } else {
+            navbar.classList.remove('no-shadow');
+            navbarBar.classList.remove('hidden');
+        }
+        const modalElement = document.querySelector('.modal');
+        if (modalElement) {
+            if (this.isModalOpen) {
+                modalElement.classList.add('open');
+            } else {
+                modalElement.classList.remove('open');
+            }
+        }
     }
 }
 

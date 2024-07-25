@@ -1,13 +1,11 @@
 import {Component} from '../core/Component.js';
 import {createElement} from "../core/DomUtils.js";
-import { Navbar } from '../components/Navbar.js';
-import { SearchBar } from '../components/Searchbar.js';
+import {Navbar} from '../components/Navbar.js';
 
 export class Favorite extends Component {
     constructor(props) {
         super(props);
-        this.Navbar = new Navbar({id:'navbar'});
-        this.Searchbar = new SearchBar({id:'searchbar'});
+        this.Navbar = new Navbar({id: 'navbar'});
     }
 
     render() {
