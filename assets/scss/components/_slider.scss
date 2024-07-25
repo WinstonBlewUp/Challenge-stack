@@ -1,6 +1,6 @@
 .slider {
     position: relative;
-    width: 100%;
+    width: 50%;
     height: 300px;
     overflow: hidden;
     border-radius: 4px;
@@ -29,7 +29,7 @@
     transition: transform 0.3s ease-in-out;
   }
   
-  .control_prev, .control_next {
+  .control{
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -39,13 +39,26 @@
     text-decoration: none;
     cursor: pointer;
     z-index: 1000;
+
+    &-prev {
+      margin-left: 5.5rem;
+    }
+
+    &-next {
+      margin-right: 5.5rem;
+    }
   }
   
-  .control_prev {
-    left: 10px;
+  @media (max-width: 768px) {
+    .control
+    {
+      
+    &-prev{
+      border: 1px solid red;
+      margin-left: 0 !important;
+    }
+    &-next{
+      margin-right: 0 !important;
+    }
   }
-  
-  .control_next {
-    right: 10px;
-  }
-  
+}

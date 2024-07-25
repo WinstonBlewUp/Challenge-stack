@@ -27,14 +27,14 @@ export class Slider extends Component {
     render() {
         const currentItem = this.items[this.currentIndex];
 
-        return createElement('div', { className: 'slider relative overflow-hidden w-full h-64' },
-            createElement('a', { className: 'slider-button control_prev absolute top-1/2 left-12 transform -translate-y-1/2 bg-white text-black p-2 cursor-pointer', onclick: this.moveLeft }, '<'),
+        return createElement('div', { className: 'slider relative overflow-hidden h-64' },
+            createElement('a', { className: 'slider-button control control-prev absolute top-1/2 left-32 sm:left-2 transform -translate-y-1/2 bg-white text-black p-2 cursor-pointer', onclick: this.moveLeft }, '<'),
             createElement('div', { className: 'slider-container flex' },
                 createElement('div', { className: 'slider-item w-full h-full flex-shrink-0' },
                     createElement('img', { src: currentItem.imageSrc, alt: 'Slide Image', className: 'w-75 h-full object-cover' })
                 )
             ),
-            createElement('a', { className: 'slider-button control_next absolute top-1/2 right-12 transform -translate-y-1/2 bg-white text-black p-2 cursor-pointer', onclick: this.moveRight }, '>')
+            createElement('a', { className: 'slider-button control control-next absolute top-1/2 right-32 sm:right-2 transform -translate-y-1/2 bg-white text-black p-2 cursor-pointer', onclick: this.moveRight }, '>')
         );
     }
 
@@ -46,3 +46,5 @@ export class Slider extends Component {
         }
     }
 }
+
+
