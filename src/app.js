@@ -4,10 +4,12 @@ import {Events} from './pages/Events.js';
 import {Favorite} from './pages/Favorite.js';
 import {Ticket} from './pages/Ticket.js';
 import {NotFound} from './pages/NotFound.js';
+import {Site} from './pages/Site.js';
 
 const routes = {
     '/': new Home(),
     '/events': new Events(),
+    '/site': new Site(),
     '/favorite': new Favorite(),
     '/ticket': new Ticket(),
     '/404': new NotFound()
