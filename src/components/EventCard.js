@@ -23,7 +23,7 @@ export class EventCard extends Component {
                 className: 'h-52 rounded-lg',
             }),
             createElement('a', {
-                href: `/event/${this.props.id}`,
+                href: '#',
                 className: 'bg-blue-300 hover:bg-blue-500 rounded-full mt-5 w-1/2 mx-auto flex justify-center items-center py-2',
                 innerHTML: 'En savoir plus',
             }),
