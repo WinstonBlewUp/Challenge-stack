@@ -26,7 +26,6 @@ async function fetchEventData() {
         console.error('Error fetching event data:', error);
         return [];
     }
-
 }
 
 async function renderEventCards() {

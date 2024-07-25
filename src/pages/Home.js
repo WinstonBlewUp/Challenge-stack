@@ -3,7 +3,6 @@ import {createElement} from "../core/DomUtils.js";
 import {Navbar} from '../components/Navbar.js';
 import {Map} from "../components/Map.js";
 
-
 export class Home extends Component {
     constructor(props) {
         super(props);

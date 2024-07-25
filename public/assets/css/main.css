@@ -45,7 +45,7 @@
 }
 
 .no-shadow {
-  box-shadow: 0px 0px 0px 0px !important;
+  box-shadow: 0 0 0 0 !important;
 }
 
 .hidden {
