@@ -13,14 +13,6 @@ export class Home extends Component {
 
     render() {
         return createElement('div', {id: 'home-page'},
-            createElement('h1', {}, 'Home Page'),
-            createElement('a', {href: '/', className: 'nav-link'}, 'Go to Home'),
-            createElement('br'),
-            createElement('a', {href: '/event', className: 'nav-link'}, 'Go to Events'),
-            createElement('br'),
-            createElement('a', {href: '/favorite', className: 'nav-link'}, 'Go to Favorites'),
-            createElement('br'),
-            createElement('a', {href: '/ticket', className: 'nav-link'}, 'Go to Tickets'),
             this.Navbar.render(),
             this.map.render(),
         );

@@ -12,14 +12,14 @@ export class Navbar extends Component {
     render() {
         const currentPath = window.location.pathname;
 
-        return createElement('div', { id: 'navbar-container' },
-            createElement('div', { id: 'navbar', className: `w-full fixed bottom-0 bg-white rounded-t-xl md:hidden ${this.isModalOpen ? 'no-shadow' : ''}` },
-                createElement('div', { className: `navbar-bar ${this.isModalOpen ? 'hidden' : ''}`, onclick: this.toggleModal }),
-                createElement('div', { className: 'flex justify-around items-center h-24' },
-                    this.createNavItem('Home', homeIcon, '/', currentPath),
-                    this.createNavItem('Events', eventsIcon, '/event', currentPath),
-                    this.createNavItem('Favorites', favoriteIcon, '/favorite', currentPath),
-                    this.createNavItem('My Tickets', ticketIcon, '/ticket', currentPath)
+        return createElement('div', {id: 'navbar-container'},
+            createElement('div', {id: 'navbar', className: `w-full fixed bottom-0 bg-white rounded-t-xl md:hidden ${this.isModalOpen ? 'no-shadow' : ''}`},
+                createElement('div', {className: `navbar-bar ${this.isModalOpen ? 'hidden' : ''}`, onclick: this.toggleModal}),
+                createElement('div', {className: 'flex justify-around items-center h-24'},
+                    this.createNavItem('Accueil', homeIcon, '/', currentPath),
+                    this.createNavItem('Événements', eventsIcon, '/events', currentPath),
+                    this.createNavItem('Favoris', favoriteIcon, '/favorite', currentPath),
+                    this.createNavItem('Billetterie', ticketIcon, '/ticket', currentPath)
                 )
             ),
             this.createModal()
@@ -51,9 +51,9 @@ export class Navbar extends Component {
 
     createModal() {
         const modalClass = this.isModalOpen ? 'modal open' : 'modal';
-        return createElement('div', { className: modalClass },
-            createElement('div', { className: 'modal-content' },
-                createElement('div', { className: 'navbar-bar', onclick: this.toggleModal }),
+        return createElement('div', {className: modalClass},
+            createElement('div', {className: 'modal-content'},
+                createElement('div', {className: 'navbar-bar', onclick: this.toggleModal}),
                 createElement('p', {}, 'Additional content goes here')
             )
         );
