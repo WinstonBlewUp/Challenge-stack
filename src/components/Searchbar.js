@@ -12,7 +12,7 @@ export class SearchBar extends Component {
 
         this.modal = new Modal({
             id: 'search-modal',
-            className: 'modal-float modal-float-tiny modal-float-dark',
+            className: 'modal-full modal-full-left',
             content: searchModalContent
         });
     }

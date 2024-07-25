@@ -69,7 +69,7 @@
     &-full{
         z-index: 100000;
         background-color: rgba(0, 0, 0, 0.3);
-        position: absolute;
+        position: fixed;
         align-items: flex-start;
         top: 0;
         height: 100%;
