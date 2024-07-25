@@ -18,7 +18,8 @@ export class Home extends Component {
         );
     }
 
-    display() {
+    display(newProps) {
+        super.display(newProps)
         this.map.display();
     }
 }
