@@ -5,16 +5,14 @@ import { router } from '../app.js';
 export class Navbar extends Component {
     constructor(props) {
         super(props);
-        this.isModalOpen = false;
-        this.toggleModal = this.toggleModal.bind(this);
     }
 
     render() {
         const currentPath = window.location.pathname;
 
         return createElement('div', {id: 'navbar-container'},
-            createElement('div', {id: 'navbar', className: `w-full fixed bottom-0 bg-white rounded-t-xl md:hidden ${this.isModalOpen ? 'no-shadow' : ''}`},
-                createElement('div', {className: `navbar-bar ${this.isModalOpen ? 'hidden' : ''}`, onclick: this.toggleModal}),
+            createElement('div', {id: 'navbar', className: `w-full fixed bottom-0 bg-white rounded-t-xl md:hidden`},
+                //createElement('div', {className: `navbar-bar ${this.isModalOpen ? 'hidden' : ''}`, onclick: this.toggleModal}),
                 createElement('div', {className: 'flex justify-around items-center h-24'},
                     this.createNavItem('Accueil', homeIcon, '/', currentPath),
                     this.createNavItem('Événements', eventsIcon, '/events', currentPath),
@@ -22,7 +20,6 @@ export class Navbar extends Component {
                     this.createNavItem('Billetterie', ticketIcon, '/ticket', currentPath)
                 )
             ),
-            this.createModal()
         );
     }
 
@@ -49,38 +46,6 @@ export class Navbar extends Component {
         }
     }
 
-    createModal() {
-        const modalClass = this.isModalOpen ? 'modal open' : 'modal';
-        return createElement('div', {className: modalClass},
-            createElement('div', {className: 'modal-content'},
-                createElement('div', {className: 'navbar-bar', onclick: this.toggleModal}),
-                createElement('p', {}, 'Additional content goes here')
-            )
-        );
-    }
-
-    toggleModal() {
-        this.isModalOpen = !this.isModalOpen;
-
-        const navbar = document.getElementById('navbar');
-        const navbarBar = navbar.querySelector('.navbar-bar');
-
-        if (this.isModalOpen) {
-            navbar.classList.add('no-shadow');
-            navbarBar.classList.add('hidden');
-        } else {
-            navbar.classList.remove('no-shadow');
-            navbarBar.classList.remove('hidden');
-        }
-        const modalElement = document.querySelector('.modal');
-        if (modalElement) {
-            if (this.isModalOpen) {
-                modalElement.classList.add('open');
-            } else {
-                modalElement.classList.remove('open');
-            }
-        }
-    }
 }
 
 const homeIcon = `

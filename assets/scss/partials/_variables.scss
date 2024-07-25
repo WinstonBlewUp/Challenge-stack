@@ -8,8 +8,11 @@ $padding: 10px 20px;
 $border-radius: 5px;
 $transition-time: 0.3s;
 
+$main-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.1);
+
+
 :root {
   --blue-color: #{$blue-color};
   --grey-color: #{$grey-button};
-
+  --main-shadow: #{$main-shadow};
 }
