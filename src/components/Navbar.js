@@ -1,6 +1,6 @@
-import { Component } from '../core/Component.js';
-import { createElement } from '../core/DomUtils.js';
-import { router } from '../app.js';
+import {Component} from '../core/Component.js';
+import {createElement} from '../core/DomUtils.js';
+import {router} from '../app.js';
 
 export class Navbar extends Component {
     constructor(props) {
@@ -25,15 +25,15 @@ export class Navbar extends Component {
 
     createNavItem(label, iconSvg, href, currentPath) {
         const isActive = currentPath === href;
-        const linkClassName = isActive ? 'flex flex-col items-center text-black nav-link' : 'flex flex-col items-center text-gray-600 nav-link';
-        const iconClassName = isActive ? 'h-8 mb-1 text-black' : 'h-8 mb-1';
+        const linkClassName = isActive ? 'flex flex-col items-center text-red-500 font-bold nav-link' : 'flex flex-col items-center text-gray-600 nav-link';
+        const iconClassName = isActive ? 'h-8 mb-1 text-red-500' : 'h-8 mb-1';
         return createElement('a', {
                 href: `${href}`,
                 className: linkClassName,
                 onclick: (event) => this.handleNavClick(event, href)
             },
-            createElement('div', { className: iconClassName, innerHTML: iconSvg }),
-            createElement('span', { className: 'text-sm' }, label)
+            createElement('div', {className: iconClassName, innerHTML: iconSvg}),
+            createElement('span', {className: 'text-sm'}, label)
         );
     }
 

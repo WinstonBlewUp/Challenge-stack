@@ -5,5 +5,4 @@
 node_modules
 
 testfile.txt.asc
-src/css/main.css
-src/css/main.css.map
+public/assets/css

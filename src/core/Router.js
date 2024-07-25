@@ -10,6 +10,9 @@ export class Router {
         history.pushState(null, null, path);
         this.renderRoute();
         this.displayRoute();
+
+        const routeChangeEvent = new CustomEvent('routeChange', {detail: {path}});
+        window.dispatchEvent(routeChangeEvent);
     }
 
     renderRoute() {
