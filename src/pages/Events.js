@@ -12,6 +12,7 @@ export class Events extends Component {
     render() {
         return createElement('div', {id: 'event-page'},
             createElement('div', {id: 'event-container', className: 'flex flex-col gap-10 p-5'}),
+            createElement('div',{}, 'Hello World'),
             this.Navbar.render(),
         );
     }
