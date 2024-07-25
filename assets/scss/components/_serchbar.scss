@@ -1,0 +1,18 @@
+.searchbar-container {
+    position: relative;
+    max-width: 352px;
+    width: 80%;
+}
+
+.searchbar{
+    z-index: 1000;
+    box-shadow: var(--main-shadow);
+    max-width: rem(352);
+    width: 80%;
+
+    &-input{
+        all: unset;
+    }
+}
+
+
