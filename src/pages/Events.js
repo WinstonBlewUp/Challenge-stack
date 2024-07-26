@@ -16,6 +16,7 @@ export class Events extends Component {
         return createElement('div', {id: 'event-page'},
             createElement('div', {id: 'event-container', className: 'flex flex-col gap-10 p-5 mt-20 mb-24'}),
             this.Topbar.render(),
+
             this.Navbar.render(),
         );
     }

@@ -1,6 +1,7 @@
 import { Component } from '../core/Component.js';
 import { createElement } from '../core/DomUtils.js';
 import { Modal } from './Modal.js';
+import { Events } from '../pages/Events.js';
 
 export class SearchBar extends Component {
     constructor(props) {
@@ -27,15 +28,13 @@ export class SearchBar extends Component {
     }
 
     createSearchModalContent() {
-        return createElement('div', {}, 
-            createElement('h2', {}, 'Search Modal Title'),
-            createElement('p', {}, 'This is the search modal content'),
-        );
+        const eventsPage = new Events();
+        return eventsPage.render()
     }
 
     render() {
         return createElement('div', { className: 'searchbar flex items-center rounded ' },
-            createElement('a', { href: '#', className: 'flex items-center p-2', onclick: this.openModal },
+            createElement('a', { href: '#', className: 'searchbar-link flex items-center p-2', onclick: this.openModal },
                 createElement('div', { className: 'icon1', innerHTML: burgerIcon })
             ),
             createElement('div', { className: 'icon2 p-2', innerHTML: searchIcon }),

@@ -15,6 +15,12 @@
     max-width: rem(352);
     width: 80%;
 
+    @media screen and (max-width: 700px){
+        .searchbar-link{
+            display: none;
+        }
+    }
+
     &-input{
         all: unset;
     }
