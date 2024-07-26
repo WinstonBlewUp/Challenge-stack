@@ -50,6 +50,20 @@
   color: black;
 }
 
+.site-button {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 500;
+}
+
+.event-button {
+  position: fixed;
+  top: 70px;
+  right: 10px;
+  z-index: 500;
+}
+
 .searchbar-container {
   position: relative;
   max-width: 352px;
@@ -191,6 +205,115 @@
 .button-link.white {
   background-color: var(--grey-color);
   color: black;
+}
+
+#topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+
+:root {
+  --blue-color: #007bff;
+  --grey-color: #E8EDF5;
+  --main-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.1);
+}
+
+.button-link {
+  padding: 0.9375rem 1.25rem;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 1.25rem;
+  text-align: center;
+}
+.button-link.blue {
+  background-color: var(--blue-color);
+  color: white;
+}
+.button-link.white {
+  background-color: var(--grey-color);
+  color: black;
+}
+
+.site-button {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 500;
+}
+
+.event-button {
+  position: fixed;
+  top: 70px;
+  right: 10px;
+  z-index: 500;
+}
+
+.slider {
+  position: relative;
+  width: 90%;
+  max-width: 21.875rem;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 4px;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (max-width: 400px) {
+  .slider .slider {
+    width: 80%;
+  }
+}
+.slider-button {
+  border-radius: 6.25rem;
+  align-items: center;
+  padding: 0 0.625rem;
+  box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.1);
+}
+
+.slider-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.slider-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  z-index: 1000;
+}
+@media (max-width: 768px) {
+  .control-prev {
+    border: 1px solid red;
+    margin-left: 0 !important;
+  }
+  .control-next {
+    margin-right: 0 !important;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */
