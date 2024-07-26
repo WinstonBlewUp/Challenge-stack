@@ -20,9 +20,9 @@ const Icon = L.Icon.extend({
     }
 });
 
-const siteIcon = new Icon({iconUrl: '../../assets/siteIcon.svg'});
-const eventIcon = new Icon({iconUrl: '../../assets/eventIcon.svg'});
-const userIcon = new Icon({iconUrl: '../../assets/user.png'});
+const siteIcon = new Icon({iconUrl: 'public/images/siteIcon.svg'});
+const eventIcon = new Icon({iconUrl: 'public/images/eventIcon.svg'});
+const userIcon = new Icon({iconUrl: 'public/images/user.png'});
 
 export class Map extends Component {
     constructor(props) {
@@ -34,9 +34,9 @@ export class Map extends Component {
         this.centerParis = this.centerParis.bind(this);
     }
 
-    siteFiltering(event){
+    siteFiltering(event) {
         event.preventDefault();
-        if (siteFilter){
+        if (siteFilter) {
             this.hideSiteMarker();
         } else {
             this.showSiteMarker();
@@ -44,19 +44,19 @@ export class Map extends Component {
         siteFilter = !siteFilter;
     }
 
-    hideSiteMarker(){
-        siteMarkers.forEach(marker =>{
+    hideSiteMarker() {
+        siteMarkers.forEach(marker => {
             this.map.removeLayer(marker);
         });
     }
 
-    showSiteMarker(){
-            this.createPoints();
+    showSiteMarker() {
+        this.createPoints();
     }
 
-    eventFiltering(event){
+    eventFiltering(event) {
         event.preventDefault();
-        if (eventFilter){
+        if (eventFilter) {
             this.hideEventMarker();
         } else {
             this.showEventMarker();
@@ -64,23 +64,23 @@ export class Map extends Component {
         eventFilter = !eventFilter;
     }
 
-    hideEventMarker(){
-        eventMarkers.forEach(marker =>{
+    hideEventMarker() {
+        eventMarkers.forEach(marker => {
             this.map.removeLayer(marker);
         });
     }
 
-    showEventMarker(){
+    showEventMarker() {
         this.createPoints();
     }
 
     componentDidMount(coordinates = [48.866669, 2.33333]) {
         const mapElement = document.getElementById(this.props.id);
         if (mapElement) {
-            if (!(this.map instanceof L.map)){
+            if (!(this.map instanceof L.map)) {
                 this.map = L.map(mapElement).setView(coordinates, 13);
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(this.map);
-            } 
+            }
         } else {
             console.error(`Element with ID ${this.props.id} not found`);
         }
@@ -112,12 +112,12 @@ export class Map extends Component {
         this.createPoints();
     }
 
-    siteTrigger(event, id){
+    siteTrigger(event, id) {
         event.preventDefault();
         console.log(id);
     }
 
-    eventTrigger(event, id){
+    eventTrigger(event, id) {
         event.preventDefault();
         console.log(id);
     }
@@ -148,16 +148,16 @@ export class Map extends Component {
             }
         });
 
-        if (position){
+        if (position) {
             L.marker(position, {icon: userIcon}).addTo(this.map).bindPopup("Vous êtes ici", {closeButton: false});
         }
-        if (siteFilter){
+        if (siteFilter) {
             siteData.forEach(element => {
                 const sitePopupContent = `<div><h3>${element.nom_site}</h3><a class="site-link" data-id="${element.code_site}">Informations</>`;
                 siteMarkers.push(L.marker([element.point_geo.lat, element.point_geo.lon], {icon: siteIcon}).addTo(this.map).bindPopup(sitePopupContent, {closeButton: false}));
             });
         }
-        if (eventFilter){
+        if (eventFilter) {
             eventData.forEach(element => {
                 const eventPopupContent = `<div><h3>${element.name}</h3><a class="event-link" data-id="${element.id}">Informations</>`;
                 eventMarkers.push(L.marker([element.latitude_c, element.longitude_c], {icon: eventIcon}).addTo(this.map).bindPopup(eventPopupContent, {closeButton: false}));
