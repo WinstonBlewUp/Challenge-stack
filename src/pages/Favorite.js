@@ -17,16 +17,14 @@ export class Favorite extends Component {
         super(props);
         this.Topbar = new Topbar({title: 'Favoris'});
         this.Navbar = new Navbar({id: 'navbar'});
-        this.Slider = new Slider({id:slider, items :sliderItems});
+        this.slider = new Slider({id: 'slider', items: sliderItems});
     }
-
-
 
     render() {
         return createElement('div', {id: 'favorite-page', className: 'flex flex-col gap-10 mt-20 mb-16'},
             createElement('div', {id: 'fav-container', className: 'flex flex-col gap-10 p-5'}),
             this.Topbar.render(),
-            this.Slider.render(),
+            this.slider.render(),
             this.Navbar.render(),
         );
     }

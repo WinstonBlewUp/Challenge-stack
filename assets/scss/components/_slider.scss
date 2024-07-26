@@ -1,9 +1,18 @@
 .slider {
     position: relative;
-    width: 50%;
+    width: 90%;
+    max-width: rem(350);
     height: 300px;
     overflow: hidden;
     border-radius: 4px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (max-width:400px) {
+      .slider{
+        width: 80%;
+      }
+    }
 
     &-button{
         border-radius: rem(100);
@@ -41,11 +50,11 @@
     z-index: 1000;
 
     &-prev {
-      margin-left: 5.5rem;
+      
     }
 
     &-next {
-      margin-right: 5.5rem;
+      
     }
   }
   
