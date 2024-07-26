@@ -11,7 +11,8 @@ export class Button extends Component {
             'a',
             {
               href: this.props.href,
-              className: `button-link ${this.props.className}` 
+              className: `button-link ${this.props.className}`,
+              onClick: this.props.onClick,
             },
             this.props.text || 'Button'
         );

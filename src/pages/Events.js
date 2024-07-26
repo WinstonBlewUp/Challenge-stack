@@ -2,41 +2,35 @@ import {Component} from '../core/Component.js';
 import {createElement} from "../core/DomUtils.js";
 import {EventCard} from "../components/EventCard.js";
 import {Navbar} from "../components/Navbar.js";
+import {Topbar} from "../components/Topbar.js";
+import {dataFetch} from "../../config/Api.js";
 
 export class Events extends Component {
     constructor(props) {
         super(props);
+        this.Topbar = new Topbar({title: 'Événements'});
         this.Navbar = new Navbar({id: 'navbar'});
     }
 
     render() {
         return createElement('div', {id: 'event-page'},
-            createElement('div', {id: 'event-container', className: 'flex flex-col gap-10 p-5'}),
-            createElement('div',{}, 'Hello World'),
+            createElement('div', {id: 'event-container', className: 'flex flex-col gap-10 p-5 mt-20 mb-24'}),
+            this.Topbar.render(),
+
             this.Navbar.render(),
         );
-    }
-}
-
-async function fetchEventData() {
-    try {
-        const response = await fetch('https://data.paris2024.org/api/explore/v2.1/catalog/datasets/paris-2024-evenements-olympiade-culturelle/records?limit=20');
-        const data = await response.json();
-        return data.results || [];
-    } catch (error) {
-        console.error('Error fetching event data:', error);
-        return [];
     }
 }
 
 async function renderEventCards() {
     const eventContainer = document.getElementById('event-container');
     if (!eventContainer) {
-        console.error('Container element with id "event-container" not found.');
         return;
     }
 
-    const eventData = await fetchEventData();
+    eventContainer.innerHTML = '';
+
+    const eventData = await dataFetch('event');
 
     if (!Array.isArray(eventData)) {
         console.error('Event data is not an array:', eventData);
@@ -44,9 +38,13 @@ async function renderEventCards() {
     }
 
     eventData.forEach(event => {
+        const disciplineRaw = event.discipline_principale_du_projet_c[0];
+        const semicolonIndex = disciplineRaw.indexOf(';');
+        const discipline = semicolonIndex !== -1 ? disciplineRaw.substring(0, semicolonIndex) : disciplineRaw;
+
         const eventProps = {
             id: event.id,
-            discipline: event.discipline_principale_du_projet_c[0],
+            discipline: discipline,
             name: event.name,
             location: event.lieu_de_presentation_c,
             description: event.presentation_synthetique_du_projet_c,
@@ -58,7 +56,14 @@ async function renderEventCards() {
     });
 }
 
-if (window.location.pathname === '/events') {
+function setupEventListeners() {
     document.addEventListener('DOMContentLoaded', renderEventCards);
+
+    window.addEventListener('routeChange', (event) => {
+        if (event.detail.path === '/events') {
+            renderEventCards();
+        }
+    });
 }
 
+setupEventListeners();
