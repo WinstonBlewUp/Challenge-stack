@@ -1,7 +1,7 @@
 import {Component} from '../core/Component.js';
 import {createElement} from '../core/DomUtils.js';
 
-export class Modal extends Component {
+export class EventModal extends Component {
     constructor(props) {
         super(props);
         this.isOpen = false;
@@ -39,10 +39,14 @@ export class Modal extends Component {
         const content = this.props.content;
 
         return createElement('div', {id: this.props.id, className: modalClass, onclick: this.closeOnOutsideClick.bind(this)},
-            createElement('div', {className: 'modal-content bg-white p-8 rounded-lg shadow-lg max-w-90 max-h-90 overflow-y-auto relative transition-transform transform translate-y-12', onclick: (e) => e.stopPropagation()},
-                createElement('button', {className: 'close-button absolute top-4 right-4 text-2xl cursor-pointer', onclick: this.toggleModal}, '×'),
-                content
-            )
+            createElement('div', {
+                    className: 'bg-white p-8 overflow-y-auto top-0 w-full h-full absolute',
+                    style: ' z-index: 1200',
+                    onclick: (e) => e.stopPropagation()
+                },
+                createElement('button', {className: 'close-button absolute top-0 left-0 py-8 px-4 text-2xl', onclick: this.toggleModal},
+                    createElement('i', {className: 'fas fa-arrow-left'})
+                ), content)
         );
     }
 
