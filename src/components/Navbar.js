@@ -12,12 +12,11 @@ export class Navbar extends Component {
 
         return createElement('div', {id: 'navbar-container'},
             createElement('div', {id: 'navbar', className: `w-full fixed bottom-0 bg-white rounded-t-xl md:hidden`},
-                //createElement('div', {className: `navbar-bar ${this.isModalOpen ? 'hidden' : ''}`, onclick: this.toggleModal}),
                 createElement('div', {className: 'flex justify-around items-center h-24'},
-                    this.createNavItem('Accueil', homeIcon, '/', currentPath),
-                    this.createNavItem('Événements', eventsIcon, '/events', currentPath),
-                    this.createNavItem('Favoris', favoriteIcon, '/favorite', currentPath),
-                    this.createNavItem('Billetterie', ticketIcon, '/ticket', currentPath)
+                    this.createNavItem('Accueil', homeIcon, '/Challenge-stack/', currentPath),
+                    this.createNavItem('Événements', eventsIcon, '/Challenge-stack/events', currentPath),
+                    this.createNavItem('Favoris', favoriteIcon, '/Challenge-stack/favorite', currentPath),
+                    this.createNavItem('Billetterie', ticketIcon, '/Challenge-stack/ticket', currentPath)
                 )
             ),
         );

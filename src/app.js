@@ -6,11 +6,11 @@ import {Ticket} from './pages/Ticket.js';
 import {NotFound} from './pages/NotFound.js';
 
 const routes = {
-    '/': new Home(),
-    '/events': new Events(),
-    '/favorite': new Favorite(),
-    '/ticket': new Ticket(),
-    '/404': new NotFound()
+    '/Challenge-stack/': new Home(),
+    '/Challenge-stack/events': new Events(),
+    '/Challenge-stack/favorite': new Favorite(),
+    '/Challenge-stack/ticket': new Ticket(),
+    '/Challenge-stack/404': new NotFound()
 };
 
 const router = new Router(routes);

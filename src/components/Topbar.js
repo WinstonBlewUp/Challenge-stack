@@ -23,7 +23,7 @@ export class Topbar extends Component {
     handleNavClick(event) {
         event.preventDefault();
         if (router && typeof router.navigate === 'function') {
-            router.navigate('/');
+            router.navigate('/Challenge-stack/');
         } else {
             console.error("Router not found or navigate method is missing.");
         }

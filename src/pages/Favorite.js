@@ -4,12 +4,12 @@ import {Component} from '../core/Component.js';
 import {Navbar} from '../components/Navbar.js';
 import {Topbar} from "../components/Topbar.js";
 import {FavCard} from "../components/FavCard.js";
-import { Slider} from "../components/Slider.js";
+import {Slider} from "../components/Slider.js";
 
 const sliderItems = [
-    { color: '#ff6666', imageSrc: 'public/assets/images/bar.png' },
-    { color: '#66ff66', imageSrc: 'public/assets/images/room.png' },
-    { color: '#6666ff', imageSrc: 'public/assets/images/fancy.png' },
+    {color: '#ff6666', imageSrc: 'public/assets/images/bar.png'},
+    {color: '#66ff66', imageSrc: 'public/assets/images/room.png'},
+    {color: '#6666ff', imageSrc: 'public/assets/images/fancy.png'},
 ];
 
 export class Favorite extends Component {
@@ -87,7 +87,7 @@ function setupFavListeners() {
     document.addEventListener('DOMContentLoaded', renderFavCards);
 
     window.addEventListener('routeChange', (fav) => {
-        if (fav.detail.path === '/favorite') {
+        if (fav.detail.path === '/Challenge-stack/favorite') {
             renderFavCards();
         }
     });

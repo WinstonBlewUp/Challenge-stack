@@ -76,7 +76,7 @@ function setupEventListeners() {
     document.addEventListener('DOMContentLoaded', renderEventCards);
 
     window.addEventListener('routeChange', (event) => {
-        if (event.detail.path === '/events') {
+        if (event.detail.path === '/Challenge-stack/events') {
             renderEventCards();
         }
     });
