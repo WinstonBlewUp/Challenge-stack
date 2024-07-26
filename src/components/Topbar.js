@@ -8,18 +8,15 @@ export class Topbar extends Component {
     }
 
     render() {
-        return createElement('div', {id: 'topbar'},
+        return createElement('div', {id: 'topbar', className: 'relative'},
             createElement('a', {
                     href: '/',
                     className: 'nav-link',
                     onclick: (event) => this.handleNavClick(event),
                 },
-                createElement('i', {className: 'fas fa-arrow-left fa-xl'})
+                createElement('i', {className: 'fas fa-arrow-left fa-xl absolute top-1/2 left-5  '}),
             ),
             createElement('h2', {className: 'text-xl', innerHTML: this.props.title}),
-            createElement('div', {className: 'menu-button'},
-                createElement('i', {className: 'fas fa-bars-sort fa-xl'})
-            ),
         );
     }
 
@@ -32,4 +29,3 @@ export class Topbar extends Component {
         }
     }
 }
-

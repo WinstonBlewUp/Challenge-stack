@@ -35,6 +35,19 @@ async function fetchEventById(eventId) {
     return allEvents.find(event => event.id === eventId);
 }
 
+function getDisciplineImage(discipline) {
+    const disciplineImages = {
+        'cinema': 'cinema.jpg',
+        'danse': 'dance.jpg',
+        'Muséal': 'museal.jpg',
+        'musique': 'musique.webp',
+        'Arts de la rue': 'streetart.jpg',
+        'Théâtre': 'theatre.jpg',
+    };
+
+    return disciplineImages[discipline.toLowerCase()] || 'autre.webp';
+}
+
 async function renderFavCards() {
     const favContainer = document.getElementById('fav-container');
     if (!favContainer) {
@@ -62,7 +75,7 @@ async function renderFavCards() {
             name: fav.name,
             location: fav.lieu_de_presentation_c,
             description: fav.presentation_synthetique_du_projet_c,
-            image: 'https://picsum.photos/500/300',
+            image: `public/images/${getDisciplineImage(discipline)}`,
         };
 
         const favCard = new FavCard(favProps);

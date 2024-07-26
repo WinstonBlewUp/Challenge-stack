@@ -21,6 +21,20 @@ export class Events extends Component {
     }
 }
 
+function getDisciplineImage(discipline) {
+    const disciplineImages = {
+        'Cinéma & Audiovisuel': 'cinema.jpg',
+        'danse': 'dance.jpg',
+        'Muséal': 'museal.jpg',
+        'musique': 'musique.webp',
+        'Arts de la rue': 'streetart.jpg',
+        'Théâtre': 'theatre.jpg',
+    };
+
+
+    return disciplineImages[discipline.toLowerCase()] || 'autre.webp';
+}
+
 async function renderEventCards() {
     const eventContainer = document.getElementById('event-container');
     if (!eventContainer) {
@@ -47,7 +61,9 @@ async function renderEventCards() {
             name: event.name,
             location: event.lieu_de_presentation_c,
             description: event.presentation_synthetique_du_projet_c,
-            image: 'https://picsum.photos/500/300',
+            dateStart: event.date_de_debut_c,
+            dateEnd: event.date_de_fin_c,
+            image: `public/images/${getDisciplineImage(discipline)}`,
         };
 
         const eventCard = new EventCard(eventProps);

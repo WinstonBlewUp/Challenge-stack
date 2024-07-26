@@ -24,8 +24,6 @@ const siteIcon = new Icon({iconUrl: '../../assets/siteIcon.svg'});
 const eventIcon = new Icon({iconUrl: '../../assets/eventIcon.svg'});
 const userIcon = new Icon({iconUrl: '../../assets/user.png'});
 
-
-
 export class Map extends Component {
     constructor(props) {
         super(props);
@@ -48,14 +46,12 @@ export class Map extends Component {
 
     hideSiteMarker(){
         siteMarkers.forEach(marker =>{
-            marker.setOpacity(0);
+            this.map.removeLayer(marker);
         });
     }
 
     showSiteMarker(){
-        siteMarkers.forEach(marker =>{
-            marker.setOpacity(1);
-        });
+            this.createPoints();
     }
 
     eventFiltering(event){
@@ -70,14 +66,12 @@ export class Map extends Component {
 
     hideEventMarker(){
         eventMarkers.forEach(marker =>{
-            marker.setOpacity(0);
+            this.map.removeLayer(marker);
         });
     }
 
     showEventMarker(){
-        eventMarkers.forEach(marker =>{
-            marker.setOpacity(1);
-        });
+        this.createPoints();
     }
 
     componentDidMount(coordinates = [48.866669, 2.33333]) {
@@ -118,23 +112,55 @@ export class Map extends Component {
         this.createPoints();
     }
 
-    
-    
+    siteTrigger(event, id){
+        event.preventDefault();
+        console.log(id);
+    }
+
+    eventTrigger(event, id){
+        event.preventDefault();
+        console.log(id);
+    }
 
     async createPoints(position) {
         const siteData = await dataFetch('site');
         const eventData = await dataFetch('event');
+
+        this.map.on('popupopen', (e) => {
+            const popup = e.popup;
+            const eventLink = popup._contentNode.querySelector('.event-link');
+            const siteLink = popup._contentNode.querySelector('.site-link');
+
+            if (eventLink) {
+                eventLink.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const id = event.currentTarget.getAttribute('data-id');
+                    this.eventTrigger(event, id);
+                });
+            }
+
+            if (siteLink) {
+                siteLink.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const id = event.currentTarget.getAttribute('data-id');
+                    this.siteTrigger(event, id);
+                });
+            }
+        });
+
         if (position){
             L.marker(position, {icon: userIcon}).addTo(this.map).bindPopup("Vous êtes ici", {closeButton: false});
         }
         if (siteFilter){
             siteData.forEach(element => {
-                siteMarkers.push(L.marker([element.point_geo.lat, element.point_geo.lon], {icon: siteIcon}).addTo(this.map).bindPopup(element.nom_site +"<br><a href='/site/"+element.code_site+"'>Informations</>" , {closeButton: false}));
+                const sitePopupContent = `<div><h3>${element.nom_site}</h3><a class="site-link" data-id="${element.code_site}">Informations</>`;
+                siteMarkers.push(L.marker([element.point_geo.lat, element.point_geo.lon], {icon: siteIcon}).addTo(this.map).bindPopup(sitePopupContent, {closeButton: false}));
             });
         }
         if (eventFilter){
             eventData.forEach(element => {
-                eventMarkers.push(L.marker([element.latitude_c, element.longitude_c], {icon: eventIcon}).addTo(this.map).bindPopup(element.name +"<br><a href='/event/"+element.id+"'>Informations</>" , {closeButton: false}));
+                const eventPopupContent = `<div><h3>${element.name}</h3><a class="event-link" data-id="${element.id}">Informations</>`;
+                eventMarkers.push(L.marker([element.latitude_c, element.longitude_c], {icon: eventIcon}).addTo(this.map).bindPopup(eventPopupContent, {closeButton: false}));
             });
         }
     }
