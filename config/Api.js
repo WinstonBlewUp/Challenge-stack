@@ -5,7 +5,7 @@ export async function dataFetch(type) {
         "limit":"&limit=100",
     };
     try {
-        const response = await fetch(urlArray[type]);
+        const response = await fetch(urlArray[type]+urlArray["limit"]);
         const data = await response.json();
         return data.results || [];
     } catch (error) {
