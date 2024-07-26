@@ -39,7 +39,7 @@ export class Modal extends Component {
         const content = this.props.content;
 
         return createElement('div', {id: this.props.id, className: modalClass, onclick: this.closeOnOutsideClick.bind(this)},
-            createElement('div', {className: 'modal-content bg-white p-8 rounded-lg shadow-lg max-w-90 max-h-90 overflow-y-auto relative transition-transform transform translate-y-12', onclick: (e) => e.stopPropagation()},
+            createElement('div', {className: 'modal modal-content bg-white p-8 rounded-lg shadow-lg max-w-90 max-h-90 overflow-y-auto relative transition-transform transform translate-y-12', onclick: (e) => e.stopPropagation()},
                 createElement('button', {className: 'close-button absolute top-4 right-4 text-2xl cursor-pointer', onclick: this.toggleModal}, '×'),
                 content
             )

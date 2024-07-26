@@ -52,14 +52,14 @@
 
 .site-button {
   position: fixed;
-  top: 10px;
+  top: 110px;
   right: 10px;
   z-index: 500;
 }
 
 .event-button {
   position: fixed;
-  top: 70px;
+  top: 170px;
   right: 10px;
   z-index: 500;
 }
@@ -80,6 +80,11 @@
   box-shadow: var(--main-shadow);
   max-width: 22rem;
   width: 80%;
+}
+@media screen and (max-width: 700px) {
+  .searchbar .searchbar-link {
+    display: none;
+  }
 }
 .searchbar-input {
   all: unset;
@@ -116,6 +121,7 @@
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
+  z-index: 10000;
 }
 .modal-float {
   position: absolute;
@@ -207,52 +213,16 @@
   color: black;
 }
 
-#topbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  background-color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2rem 1rem;
-}
-
-:root {
-  --blue-color: #007bff;
-  --grey-color: #E8EDF5;
-  --main-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.1);
-}
-
-.button-link {
-  padding: 0.9375rem 1.25rem;
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: 700;
-  border-radius: 1.25rem;
-  text-align: center;
-}
-.button-link.blue {
-  background-color: var(--blue-color);
-  color: white;
-}
-.button-link.white {
-  background-color: var(--grey-color);
-  color: black;
-}
-
 .site-button {
   position: fixed;
-  top: 10px;
+  top: 110px;
   right: 10px;
   z-index: 500;
 }
 
 .event-button {
   position: fixed;
-  top: 70px;
+  top: 170px;
   right: 10px;
   z-index: 500;
 }
@@ -314,6 +284,9 @@
   .control-next {
     margin-right: 0 !important;
   }
+}
+.leaflet-bottom.leaflet-right {
+  display: none;
 }
 
 /*# sourceMappingURL=main.css.map */
